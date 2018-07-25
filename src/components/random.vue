@@ -36,66 +36,66 @@ export default {
       classroomDisplay: "inline-block",
       classnumberDisplay: "inline-block",
       luckyDisplay: "none"
-    };
+    }
   },
   methods: {
     randomClassroomFunc() {
       // Display classroom and classnumber and hide lucky
-      this.classroomDisplay = "inline-block";
-      this.classnumberDisplay = "inline-block";
-      this.luckyDisplay = "none";
+      this.classroomDisplay = "inline-block"
+      this.classnumberDisplay = "inline-block"
+      this.luckyDisplay = "none"
 
       // Get classroom
-      this.classroom = [];
+      this.classroom = []
       for (let i = 1; i <= this.classlevel_room; i++) {
-        this.classroom[i - 1] = this.classlevel_num + "/" + i;
+        this.classroom[i - 1] = this.classlevel_num + "/" + i
       }
       // Number of classroom
-      let lengthNum = this.classroom.length;
-      let randomTimes = 45;
+      let lengthNum = this.classroom.length
+      let randomTimes = 45
       this.randomClassroomNum = Math.floor(
         Math.random() * Math.floor(lengthNum)
-      );
-      this.randomClassroomCount += 1;
+      )
+      this.randomClassroomCount += 1
       if (this.randomClassroomCount > randomTimes / 2) {
-        this.randomClassroomDelay += 10;
+        this.randomClassroomDelay += 10
       }
       if (this.randomClassroomCount < randomTimes) {
-        setTimeout(this.randomClassroomFunc, this.randomClassroomDelay);
+        setTimeout(this.randomClassroomFunc, this.randomClassroomDelay)
       } else {
-        this.randomClassroomDelay = 100;
-        this.randomClassroomCount = 0;
+        this.randomClassroomDelay = 100
+        this.randomClassroomCount = 0
       }
       if (this.randomClassroomCount == 0) {
-        this.randomClassnumberFunc();
+        this.randomClassnumberFunc()
       }
     },
     randomClassnumberFunc() {
       // Number of student
-      let lengthNum = this.classnumber;
-      let randomTimes = 45;
+      let lengthNum = this.classnumber
+      let randomTimes = 45
       this.randomClassnumberNum = Math.floor(
         Math.random() * Math.floor(lengthNum)
-      )+1;
-      this.randomClassnumberCount += 1;
+      )+1
+      this.randomClassnumberCount += 1
       if (this.randomClassnumberCount > randomTimes / 2) {
-        this.randomClassnumberDelay += 10;
+        this.randomClassnumberDelay += 10
       }
       if (this.randomClassnumberCount < randomTimes) {
-        setTimeout(this.randomClassnumberFunc, this.randomClassnumberDelay);
+        setTimeout(this.randomClassnumberFunc, this.randomClassnumberDelay)
       } else {
-        this.randomClassnumberDelay = 100;
-        this.randomClassnumberCount = 0;
+        this.randomClassnumberDelay = 100
+        this.randomClassnumberCount = 0
       }
       if (this.randomClassnumberCount == 0) {
-        this.classroomDisplay = "none";
-        this.classnumberDisplay = "none";
-        this.luckyDisplay = "inline-block";
+        this.classroomDisplay = "none"
+        this.classnumberDisplay = "none"
+        this.luckyDisplay = "inline-block"
       }
     }
   },
   mounted() {}
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
