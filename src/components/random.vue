@@ -2,11 +2,11 @@
   <div class="container">
     <div class="classroom" :style="{ 'display' : classroomDisplay }">
       <h3>ห้อง</h3>
-      <h1>{{ classroom[randomClassroomNum] }}</h1>
+      <h1>{{ classroom[randomClassroomNum] || '?' }}</h1>
     </div>
     <div class="classnumber" :style="{ 'display' : classnumberDisplay }">
       <h3>เลขที่</h3>
-      <h1>{{ randomClassnumberNum }}</h1>
+      <h1>{{ randomClassnumberNum || '?' }}</h1>
     </div>
     <div class="lucky" :style="{ 'display' : luckyDisplay }">
       <h3>ผู้โชคดีได้แก่</h3>
@@ -23,11 +23,14 @@ export default {
   name: "random",
   data() {
     return {
-      classroom: ["4/1", "4/2", "4/3", "4/4", "4/5"],
+      classroom: [],
+      classlevel_num: this.$route.params.classlevel_nums,
+      classlevel_room: this.$route.params.classlevel_rooms,
+      classnumber: this.$route.params.classnumbers,
       randomClassroomNum: 0,
       randomClassroomDelay: 100,
       randomClassroomCount: 0,
-      randomClassnumberNum: 0,
+      randomClassnumberNum: "",
       randomClassnumberDelay: 100,
       randomClassnumberCount: 0,
       classroomDisplay: "inline-block",
@@ -41,6 +44,12 @@ export default {
       this.classroomDisplay = "inline-block";
       this.classnumberDisplay = "inline-block";
       this.luckyDisplay = "none";
+
+      // Get classroom
+      this.classroom = [];
+      for (let i = 1; i <= this.classlevel_room; i++) {
+        this.classroom[i - 1] = this.classlevel_num + "/" + i;
+      }
       // Number of classroom
       let lengthNum = this.classroom.length;
       let randomTimes = 45;
@@ -63,11 +72,11 @@ export default {
     },
     randomClassnumberFunc() {
       // Number of student
-      let lengthNum = 50;
+      let lengthNum = this.classnumber;
       let randomTimes = 45;
       this.randomClassnumberNum = Math.floor(
         Math.random() * Math.floor(lengthNum)
-      );
+      )+1;
       this.randomClassnumberCount += 1;
       if (this.randomClassnumberCount > randomTimes / 2) {
         this.randomClassnumberDelay += 10;
@@ -97,6 +106,7 @@ h3 {
 }
 .container {
   background: url(https://itcamp.in.th/14/static/img/bg-sec6.2d89848.png);
+  background-size: cover;
   min-height: 100vh;
   color: #241b44 !important;
 }
@@ -130,5 +140,11 @@ h3 {
   padding: 5px 35px;
   border-radius: 3px;
   box-shadow: 0 0 5px #fff;
+}
+
+@media screen and (max-width: 768px) {
+  .lucky {
+    width: 70%;
+  }
 }
 </style>
