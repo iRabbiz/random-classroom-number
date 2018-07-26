@@ -105,7 +105,7 @@ h3 {
   margin: 0;
 }
 .container {
-  background: url(https://itcamp.in.th/14/static/img/bg-sec6.2d89848.png);
+  background: url(http://static.simpledesktops.com/uploads/desktops/2014/10/15/tetons-at-night.png);
   background-size: cover;
   min-height: 100vh;
   color: #241b44 !important;
